@@ -1,0 +1,25 @@
+resource "aws_route_table" "sesac_natrt_a" {
+  vpc_id = aws_vpc.sesac_vpc.id
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_nat_gateway.sesac_nat_public_a.id
+  }
+
+  tags = {
+    Name = "sesac-natrt-a"
+  }
+}
+
+resource "aws_route_table" "sesac_natrt_b" {
+  vpc_id = aws_vpc.sesac_vpc.id
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_nat_gateway.sesac_nat_public_b.id
+  }
+
+  tags = {
+    Name = "sesac-natrt-b"
+  }
+}

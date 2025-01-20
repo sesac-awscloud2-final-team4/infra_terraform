@@ -6,10 +6,11 @@ terraform {
     }
   }
   backend "s3" {
-    bucket = "kimchigood-t101study-tfstate-week3"
-    key    = "workspaces-default/terraform.tfstate"
-    region = "ap-northeast-2"
-    dynamodb_table = "terraform-locks-week3"
+    bucket         = "terraform-tfstate-version-management"
+    key            = "tfstate-versions/terraform.tfstate"
+    region         = "ap-northeast-2"
+    dynamodb_table = "terraform-tfstate-version-dbtable"
+    profile        = "sesac"
   }
 }
 
@@ -28,7 +29,7 @@ variable "project_name" {
 variable "aws_region" {
   type			= string
   description	= "vpc region name"
-  default       = "ap-southeast-1"
+  default       = "ap-southeast-7"
 }
 
 variable "key_pair_path" {
@@ -45,7 +46,7 @@ variable "key_pair_name" {
 
 provider "aws" {
   region  = var.aws_region
-  profile = var.aws_profile
+  profile = "sesac"
 }
 
 resource "aws_key_pair" "project-key" {

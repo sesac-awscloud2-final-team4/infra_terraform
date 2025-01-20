@@ -11,3 +11,7 @@ resource "aws_ecr_repository" "sesac_ecr_repository" {
     prevent_destroy = false  # 리포지토리 삭제 가능
   }
 }
+
+output "vpc_name" {
+  value = aws_vpc.sesac_vpc.id
+}

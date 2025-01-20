@@ -5,6 +5,12 @@ terraform {
       version = "~> 5.0"
     }
   }
+  backend "s3" {
+    bucket = "kimchigood-t101study-tfstate-week3"
+    key    = "workspaces-default/terraform.tfstate"
+    region = "ap-northeast-2"
+    dynamodb_table = "terraform-locks-week3"
+  }
 }
 
 variable "aws_profile" {

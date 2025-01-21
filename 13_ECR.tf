@@ -1,5 +1,6 @@
 resource "aws_ecr_repository" "sesac_ecr_repository" {
   name                 = "sesac-ecr-repository"  # ECR 리포지토리 이름
+  
   image_tag_mutability = "MUTABLE"      # 이미지 태그 가변성 설정
 
   tags = {
@@ -15,3 +16,9 @@ resource "aws_ecr_repository" "sesac_ecr_repository" {
 output "vpc_name" {
   value = aws_vpc.sesac_vpc.id
 }
+
+output "aws_region" {
+   value = var.aws_region
+
+}
+

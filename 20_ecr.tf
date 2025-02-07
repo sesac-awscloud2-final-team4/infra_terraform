@@ -1,10 +1,10 @@
 resource "aws_ecr_repository" "sesac_ecr_repository" {
-  name                 = "sesac-ecr-repository"  # ECR 리포지토리 이름
+  name                 = "${var.project_name}-ecr-repository"  # ECR 리포지토리 이름
   
   image_tag_mutability = "MUTABLE"      # 이미지 태그 가변성 설정
 
   tags = {
-    Name        = "sesac-ecr-repository"
+    Name        = "${var.project_name}-ecr-repository"
     Environment = "Production"
   }
 

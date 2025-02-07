@@ -8,11 +8,11 @@ resource "aws_route_table" "sesac_natrt_a" {
 
   route {
     cidr_block = "0.0.0.0/0"
-    gateway_id = aws_nat_gateway.sesac_nat_public_a.id
+    nat_gateway_id = aws_nat_gateway.sesac_nat_public_a.id
   }
 
   tags = {
-    Name = "sesac-natrt-a"
+    Name = "${var.project_name}-natrt-a"
   }
 }
 
@@ -26,10 +26,10 @@ resource "aws_route_table" "sesac_natrt_b" {
 
   route {
     cidr_block = "0.0.0.0/0"
-    gateway_id = aws_nat_gateway.sesac_nat_public_b.id
+    nat_gateway_id = aws_nat_gateway.sesac_nat_public_b.id
   }
 
   tags = {
-    Name = "sesac-natrt-b"
+    Name = "${var.project_name}-natrt-b"
   }
 }

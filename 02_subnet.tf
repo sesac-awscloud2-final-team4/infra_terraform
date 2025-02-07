@@ -11,7 +11,7 @@ resource "aws_subnet" "sesac_public_a" {
   availability_zone = local.subnet_a
 
   tags = {
-    Name = "sesac-public-a"
+    Name = "${var.project_name}-public-a"
   }
 }
 
@@ -21,7 +21,7 @@ resource "aws_subnet" "sesac_public_b" {
   availability_zone = local.subnet_b
 
   tags = {
-    Name = "sesac-public-b"
+    Name = "${var.project_name}-public-b"
   }
 }
 
@@ -31,7 +31,7 @@ resource "aws_subnet" "sesac_private_2a" {
   availability_zone = local.subnet_a
 
   tags = {
-    Name = "sesac-private-2a"
+    Name = "${var.project_name}-private-2a"
   }
 }
 
@@ -41,7 +41,7 @@ resource "aws_subnet" "sesac_private_2b" {
   availability_zone = local.subnet_b
 
   tags = {
-    Name = "sesac-private-2b"
+    Name = "${var.project_name}-private-2b"
   }
 }
 
@@ -51,7 +51,7 @@ resource "aws_subnet" "sesac_db_2a" {
   availability_zone = local.subnet_a
 
   tags = {
-    Name = "sesac-db-2a"
+    Name = "${var.project_name}-db-2a"
   }
 }
 
@@ -61,6 +61,6 @@ resource "aws_subnet" "sesac_db_2b" {
   availability_zone = local.subnet_b
 
   tags = {
-    Name = "sesac-db-2b"
+    Name = "${var.project_name}-db-2b"
   }
 }

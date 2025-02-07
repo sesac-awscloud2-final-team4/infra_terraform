@@ -7,6 +7,6 @@ resource "aws_route_table" "sesac_rt" {
   }
 
   tags = {
-    Name = "sesac-rt"
+    Name = "${var.project_name}-rt"
   }
 }

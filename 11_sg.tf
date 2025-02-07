@@ -1,6 +1,6 @@
-resource "aws_security_group" "sesac-security-group-web" {
+resource "aws_security_group" "sesac_security_group_web" {
   vpc_id = aws_vpc.sesac_vpc.id
-  name = "sesac-security-group-web"
+  name = "${var.project_name}-security-group-web"
 
   ingress {
     from_port   = 80
@@ -27,6 +27,6 @@ resource "aws_security_group" "sesac-security-group-web" {
     cidr_blocks = ["0.0.0.0/0"]
   }
   tags = {
-    Name = "sesac-security-group-web"
+    Name = "${var.project_name}-security-group-web"
   }
 }

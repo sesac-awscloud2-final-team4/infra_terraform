@@ -22,7 +22,7 @@ variable "aws_profile" {
 variable "project_name" {
   type			= string
   description	= "project name"
-  default       = "sesac-final"
+  default       = "sesac"
 }
 
 variable "aws_region" {

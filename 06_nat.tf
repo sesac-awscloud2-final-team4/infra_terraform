@@ -10,7 +10,7 @@ resource "aws_nat_gateway" "sesac_nat_public_a" {
   subnet_id     = aws_subnet.sesac_public_a.id
 
   tags = {
-    Name = "sesac-nat-public-a"
+    Name = "${var.project_name}-nat-public-a"
   }
 }
 
@@ -19,6 +19,6 @@ resource "aws_nat_gateway" "sesac_nat_public_b" {
   subnet_id     = aws_subnet.sesac_public_b.id
 
   tags = {
-    Name = "sesac-nat-public-b"
+    Name = "${var.project_name}-nat-public-b"
   }
 }

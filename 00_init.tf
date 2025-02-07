@@ -2,7 +2,7 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 5.0"
+      version = "5.82.2"
     }
   }
   backend "s3" {
@@ -10,7 +10,6 @@ terraform {
     key            = "tfstate-versions/terraform.tfstate"
     region         = "ap-northeast-2"
     dynamodb_table = "terraform-tfstate-version-dbtable"
-    profile        = "sesac"
   }
 }
 
@@ -46,7 +45,7 @@ variable "key_pair_name" {
 
 provider "aws" {
   region  = var.aws_region
-  profile = "sesac"
+  profile = var.aws_profile
 }
 
 resource "aws_key_pair" "project-key" {

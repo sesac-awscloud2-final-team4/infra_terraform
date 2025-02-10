@@ -25,42 +25,42 @@ resource "aws_subnet" "sesac_public_b" {
   }
 }
 
-resource "aws_subnet" "sesac_private_2a" {
+resource "aws_subnet" "sesac_private_a" {
   vpc_id     = aws_vpc.sesac_vpc.id
   cidr_block = "10.0.2.0/24"
   availability_zone = local.subnet_a
 
   tags = {
-    Name = "${var.project_name}-private-2a"
+    Name = "${var.project_name}-private-a"
   }
 }
 
-resource "aws_subnet" "sesac_private_2b" {
+resource "aws_subnet" "sesac_private_b" {
   vpc_id     = aws_vpc.sesac_vpc.id
   cidr_block = "10.0.3.0/24"
   availability_zone = local.subnet_b
 
   tags = {
-    Name = "${var.project_name}-private-2b"
+    Name = "${var.project_name}-private-b"
   }
 }
 
-resource "aws_subnet" "sesac_db_2a" {
+resource "aws_subnet" "sesac_db_a" {
   vpc_id     = aws_vpc.sesac_vpc.id
   cidr_block = "10.0.10.0/24"
   availability_zone = local.subnet_a
 
   tags = {
-    Name = "${var.project_name}-db-2a"
+    Name = "${var.project_name}-db-a"
   }
 }
 
-resource "aws_subnet" "sesac_db_2b" {
+resource "aws_subnet" "sesac_db_b" {
   vpc_id     = aws_vpc.sesac_vpc.id
   cidr_block = "10.0.11.0/24"
   availability_zone = local.subnet_b
 
   tags = {
-    Name = "${var.project_name}-db-2b"
+    Name = "${var.project_name}-db-b"
   }
 }

@@ -28,7 +28,7 @@ variable "project_name" {
 variable "aws_region" {
   type			= string
   description	= "vpc region name"
-  default       = "ap-southeast-2"
+  default       = "ap-northeast-2"
 }
 
 variable "key_pair_path" {

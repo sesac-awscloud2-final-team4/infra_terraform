@@ -1,0 +1,53 @@
+resource "aws_s3_bucket" "sesac_s3_bucket" {
+  bucket = "project-static-file"
+}
+
+# CloudFront 오리진 액세스 제어(OAC) 설정
+  resource "aws_cloudfront_origin_access_control" "oac" {
+  name                              = "sesac-oac"
+  description                       = "OAC for my S3 bucket"
+  origin_access_control_origin_type = "s3"
+  signing_behavior                  = "always"
+  signing_protocol                  = "sigv4"
+}
+
+# AWS에서 제공하는 CachingOptimized 정책 ID
+data "aws_cloudfront_cache_policy" "caching_optimized" {
+  name = "Managed-CachingOptimized"
+}
+
+# CloudFront 배포
+resource "aws_cloudfront_distribution" "s3_distribution" {
+  origin {
+    domain_name              = aws_s3_bucket.sesac_s3_bucket.bucket_regional_domain_name
+    origin_id                = "s3-origin"
+    origin_access_control_id = aws_cloudfront_origin_access_control.oac.id
+  }
+
+  enabled             = true
+  default_root_object = "index.html"
+
+  # Cache 설정
+  default_cache_behavior {
+    target_origin_id       = "s3-origin"
+    viewer_protocol_policy = "redirect-to-https"
+    allowed_methods        = ["GET", "HEAD"]
+    cached_methods         = ["GET", "HEAD"]
+
+    cache_policy_id = data.aws_cloudfront_cache_policy.caching_optimized.id
+  }
+
+  # CloudFront price class (요금 절감)
+  price_class = "PriceClass_100"
+
+  restrictions {
+    geo_restriction {
+      restriction_type = "none"
+    }
+  }
+
+  # SSL 설정 (기본 제공되는 CloudFront 인증서 사용)
+  viewer_certificate {
+    cloudfront_default_certificate = true
+  }
+}

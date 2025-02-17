@@ -17,7 +17,3 @@ output "vpc_name" {
   value = aws_vpc.sesac_vpc.id
 }
 
-output "aws_region" {
-   value = var.aws_region
-
-}

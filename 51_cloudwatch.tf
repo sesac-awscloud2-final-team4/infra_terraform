@@ -1,44 +1,48 @@
 # Dashboard
-resource "aws_cloudwatch_dashboard" "main" {
-  dashboard_name = "my-dashboard"
-
-  dashboard_body = jsonencode({
-    widgets = [
-      {
-        type   = "metric"
-        x      = 0
-        y      = 0
-        width  = 12
-        height = 6
-
-        properties = {
-          metrics = [
-            [
-              "AWS/EC2",
-              "CPUUtilization",
-              "InstanceId",
-              "i-012345"
-            ]
-          ]
-          period = 300
-          stat   = "Average"
-          region = "ap-northeast-2"
-          title  = "EC2 Instance CPU"
+resource "aws_cloudwatch_dashboard" "EC2_Dashboard" {
+  dashboard_name = "EC2-Dashboard"
+  dashboard_body = <<EOF
+{
+    "widgets": [
+        {
+            "type": "explorer",
+            "width": 24,
+            "height": 15,
+            "x": 0,
+            "y": 0,
+            "properties": {
+                "metrics": [
+                    {
+                        "metricName": "CPUUtilization",
+                        "resourceType": "AWS::EC2::Instance",
+                        "stat": "Maximum"
+                    }
+                ],
+                "aggregateBy": {
+                    "key": "InstanceType",
+                    "func": "MAX"
+                },
+                "labels": [
+                    {
+                        "key": "State",
+                        "value": "running"
+                    }
+                ],
+                "widgetOptions": {
+                    "legend": {
+                        "position": "bottom"
+                    },
+                    "view": "timeSeries",
+                    "rowsPerPage": 8,
+                    "widgetsPerRow": 2
+                },
+                "period": 60,
+                "title": "Running EC2 Instances CPUUtilization"
+            }
         }
-      },
-      {
-        type   = "text"
-        x      = 0
-        y      = 7
-        width  = 3
-        height = 3
-
-        properties = {
-          markdown = "Hello world"
-        }
-      }
     ]
-  })
+}
+EOF
 }
 
 # Metric Alarm

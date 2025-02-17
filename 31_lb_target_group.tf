@@ -9,7 +9,7 @@ resource "aws_lb_target_group" "sesac_albtg" {
     enabled = true
     healthy_threshold = 3
     matcher = "200"
-    path = "/health.html"
+    path = "/actuator/health"
     port = "traffic-port"
     protocol = "HTTP"
 

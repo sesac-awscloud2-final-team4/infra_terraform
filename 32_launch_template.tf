@@ -28,6 +28,7 @@ resource "aws_launch_template" "web_app_launch_template" {
   instance_type			= local.instance_type
   key_name				= aws_key_pair.project-key.key_name
   vpc_security_group_ids	= [aws_security_group.sesac_security_group_web.id]
+  user_data = "IyEvYmluL2Jhc2gKZWNobyBFQ1NfQ0xVU1RFUj1zZXNhYy10ZXN0LWNsdXN0ZXIgPj4gL2V0Yy9lY3MvZWNzLmNvbmZpZw=="
 
   iam_instance_profile	{
     name = aws_iam_instance_profile.instance_profile.name

@@ -4,6 +4,7 @@ resource "aws_lb_target_group" "sesac_albtg" {
   protocol = "HTTP"
   vpc_id = aws_vpc.sesac_vpc.id
   target_type = "instance"
+  deregistration_delay = "60"
 
   health_check {
     enabled = true
@@ -20,7 +21,7 @@ resource "aws_lb_target_group" "sesac_albtg" {
 
 resource "aws_lb_listener" "sesac_albli" {
   load_balancer_arn = aws_lb.sesac_alb.arn
-  port = 80
+  port = 8080
   protocol = "HTTP"
 
   default_action {

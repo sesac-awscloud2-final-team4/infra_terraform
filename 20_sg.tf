@@ -32,3 +32,32 @@ resource "aws_security_group" "sesac_security_group_web" {
     Name = "${var.project_name}-security-group-web"
   }
 }
+
+resource "aws_security_group" "sesac_security_group_alb_web" {
+  vpc_id = aws_vpc.sesac_vpc.id
+  name = "${var.project_name}-security-group-alb-web"
+
+  ingress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+    ingress {
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  tags = {
+    Name = "${var.project_name}-security-group-alb-web"
+  }
+}

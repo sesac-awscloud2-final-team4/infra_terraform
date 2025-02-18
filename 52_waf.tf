@@ -4,7 +4,7 @@ resource "aws_wafv2_ip_set" "ipset" {
   description        = "Example IP set"
   scope              = "REGIONAL"
   ip_address_version = "IPV4"
-  addresses          = ["172.16.8.133/32"] #예시
+  addresses          = ["172.16.8.133/22"] #예시
 
 
   tags = {
@@ -148,7 +148,7 @@ resource "aws_wafv2_web_acl" "rate-based-rule" {
   
  
 #waf associate
-resource "aws_wafv2_web_acl_association" "managed-rule-example" {
+resource "aws_wafv2_web_acl_association" "managed-rules" {
   resource_arn = aws_lb.sesac_alb.arn  
   web_acl_arn  = aws_wafv2_web_acl.managed-rule-example.arn  
 }

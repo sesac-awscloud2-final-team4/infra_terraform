@@ -2,6 +2,7 @@ resource "aws_cloudtrail" "project-cloudtrail" {
   depends_on = [aws_s3_bucket_policy.project-cloudtrail]
 
   name                          = "project-cloudtrail"
+  sns_topic_name                = "aws-cloudtrail-logs-448049822958-4a66422c"
   s3_bucket_name                = aws_s3_bucket.project-cloudtrail.id
   s3_key_prefix                 = "prefix"
   include_global_service_events = false
@@ -32,7 +33,6 @@ data "aws_iam_policy_document" "project-cloudtrail" {
       values   = ["arn:${data.aws_partition.current.partition}:cloudtrail:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:trail/project-cloudtrail"]
     }
   }
-
 
   statement {
     sid    = "AWSCloudTrailWrite"

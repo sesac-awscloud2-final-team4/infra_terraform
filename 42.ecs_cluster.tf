@@ -1,5 +1,9 @@
 resource "aws_ecs_cluster" "sesac_test_cluster" {
   name = "sesac-test-cluster"
+
+  service_connect_defaults {
+    namespace = "arn:aws:servicediscovery:ap-northeast-2:448049822958:namespace/ns-3u26rtjxbktfruez"
+  }
 }
 
 # resource "aws_ecs_task_definition" " " {

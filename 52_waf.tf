@@ -1,10 +1,10 @@
 # ip set
 resource "aws_wafv2_ip_set" "ipset" {
   name               = "ipset"
-  description        = "Example IP set"
+  description        = "IP set for blocking bad IP"
   scope              = "REGIONAL"
   ip_address_version = "IPV4"
-  addresses          = ["172.16.8.133/22"] #예시
+  addresses          = ["192.168.204.1/24"] #예시
 
 
   tags = {
@@ -148,7 +148,7 @@ resource "aws_wafv2_web_acl" "rate-based-rule" {
   
  
 #waf associate
-resource "aws_wafv2_web_acl_association" "managed-rules" {
+resource "aws_wafv2_web_acl_association" "managed-rule-example" {
   resource_arn = aws_lb.sesac_alb.arn  
   web_acl_arn  = aws_wafv2_web_acl.managed-rule-example.arn  
 }
